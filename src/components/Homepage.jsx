@@ -1,11 +1,14 @@
 import React from "react";
 import millify from "millify";
-import { Typography, Row, Col, Statistic } from "antd";
+import { Typography, Row, Col, Statistic, Image } from "antd";
 import { Link } from "react-router-dom";
+import { useGetCryptosQuery } from "../services/cryptoApi";
 
 const { Title } = Typography;
 
 const Homepage = () => {
+  const { data, isFetching } = useGetCryptosQuery();
+  console.log(data);
   return (
     <>
       <Title level={2} className="heading">
@@ -28,6 +31,12 @@ const Homepage = () => {
           <Statistic title="Total Markets" value="5" />{" "}
         </Col>
       </Row>
+      {data?.map((item) => (
+        <>
+          <Title>{item.name}</Title>
+          <Image src={item.image.large} width={200} />
+        </>
+      ))}
     </>
   );
 };
