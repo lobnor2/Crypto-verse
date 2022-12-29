@@ -30,11 +30,11 @@ function App() {
         </Layout>
         <div className="footer">
           <Typography.Title
-            lever={5}
+            level={5}
             style={{ color: "white", textAlign: "center" }}
           >
             CryptoVerse <br />
-            All rights reserved
+            &copy;2022 All rights reserved
           </Typography.Title>
           <Space>
             <Link to="/">Home</Link>
