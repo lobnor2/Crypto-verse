@@ -76,9 +76,11 @@ const CryptoDetails = () => {
     },
     {
       title: "Total Supply",
-      value: ` ${
-        cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)
-      }`,
+      value: cryptoDetails?.supply?.max
+        ? ` ${
+            cryptoDetails?.supply?.max && millify(cryptoDetails?.supply?.max)
+          }`
+        : "Unlimited ",
       icon: <ExclamationCircleOutlined />,
     },
     {
@@ -142,7 +144,7 @@ const CryptoDetails = () => {
             <Title level={3} className="coin-details-heading">
               Other Statistics
             </Title>
-            <p>An overview showing the stats of all cryptocurrencies</p>
+            <p>An overview showing the stats of all cryptocurrencies.</p>
           </Col>
           {genericStats.map(({ icon, title, value }) => (
             <Col className="coin-stats">
@@ -154,7 +156,31 @@ const CryptoDetails = () => {
             </Col>
           ))}
         </Col>
-        {/* <p>{HTMLReactParser(cryptoDetails.description)}</p> */}
+      </Col>
+      <Col className="coin-desc-link">
+        <Row className="coin-desc">
+          <Title level={2} className="coin-details-heading">
+            What is {cryptoDetails?.name}
+            <p style={{ color: "black" }}>
+              {HTMLReactParser(cryptoDetails?.description)}
+            </p>
+          </Title>
+        </Row>
+        <Col className="coin-links">
+          <Title level={3} className="coin-details-heading">
+            {cryptoDetails?.name} Links
+          </Title>
+          {cryptoDetails.links.map((link) => (
+            <Row className="coin-link" key={link.name}>
+              <Title level={5} className="link-name">
+                {link.type}
+              </Title>
+              <a href={link.url} target="_blank" rel="noreferrer">
+                {link.name}
+              </a>
+            </Row>
+          ))}
+        </Col>
       </Col>
     </Col>
   );
