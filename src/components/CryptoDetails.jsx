@@ -19,6 +19,7 @@ import {
   useGetCryptoHistoryQuery,
 } from "../services/cryptoApi";
 import LineChart from "./LineChart";
+import Loader from "./Loader";
 const { Title, Text } = Typography;
 const { Option } = Select;
 
@@ -33,7 +34,7 @@ const CryptoDetails = () => {
     });
   const cryptoDetails = data?.data?.coin;
   const time = ["3h", "24h", "7d", "30d", "3m", "1y", "3y", "5y"];
-  if (isFetching) return "Loading...";
+  if (isFetching) return <Loader />;
 
   const stats = [
     {
@@ -102,7 +103,7 @@ const CryptoDetails = () => {
       icon: <ExclamationCircleOutlined />,
     },
   ];
-  console.log(cryptoDetails);
+  // console.log(cryptoDetails);
   return (
     <Col className="coin-detail-container">
       <Col className="coin-heading-container">
